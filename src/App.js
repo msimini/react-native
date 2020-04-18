@@ -27,10 +27,11 @@ export default function App() {
     const likerepo = res.data;
     
     const repositoriesUpdated = repositories.map(repo => {
-      if (repo.id === id) return likerepo;
-      return repo
+      return (repo.id === id) ? likerepo : repo;
     })
     
+    console.log('repositoriesUpdated', repositoriesUpdated);
+
     setRepositories(repositoriesUpdated)
   }
 
@@ -60,14 +61,13 @@ export default function App() {
               // Remember to replace "1" below with repository ID: 
               testID={`repository-likes-${repo.id}`}
             >
-              {repo.likes} curtida(s)
+              {repo.likes} curtidas
             </Text>
           </View>
 
           <TouchableOpacity
             style={styles.button}
             onPress={() => handleLikeRepository(repo.id)}
-            // Remember to replace "1" below with repository ID: 
             testID={`like-button-${repo.id}`}
           >
             <Text style={styles.buttonText}>Curtir</Text>
